@@ -8,7 +8,7 @@ def criar_tabelas():
     conexao = conectar_banco()
     cursor = conexao.cursor()
     
-    cursor.execute('''CREATE TABLE IF NOT EXISTS usuario
+    cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios
                    (email TEXT PRIMARY KEY,
                    senha TEXT KEY)''')
     
@@ -22,8 +22,17 @@ def criar_tabelas():
                    preco_borda REAL,
                    endereco TEXT,
                    telefone TEXT,
-                   nome_cliente TEXT
+                   nome_cliente TEXT,
+                   status TEXT
                    )   ''')
+
+def criar_conta(email, senha):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    # Sistema interno não precisa de criptograficação das senhas
+    cursor.execute("""INSERT INTO usuarios VALUES (?,?)""",(email, senha))
+    conexao.commit()
+    cursor.close()
     
     
 if __name__=="__main__":
