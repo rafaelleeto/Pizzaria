@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {% for pizza in pizzas %}
+    <table>
+        <thead>
+            <th>Nome da Pizza</th>
+            <th>Ingredientes</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{pizza[0]}} </td > 
+                <td>{{pizza[1]}}</td>
+                <td> <a href="/atualizar/{{pizza[0]}}">Atualizar</a> </td>
+                <td> <a href="/deletar/{{pizza[0]}}">Deletar</a> </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+    {% endfor %}
+</body>
+</html>
