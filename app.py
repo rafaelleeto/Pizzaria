@@ -61,6 +61,18 @@ def atualizar_nome_da_pizza(nome):
     database.atualizar_pizza(nome_novo,ingredientes,nome)
     return redirect("/menu")
 
+@app.route("/deletar/<nome>", methods = ["GET"])
+def excluir_tipo_de_pizza(nome):
+    database.deletar_pizza(nome)
+    return redirect ("/menu")
+
+@app.route("/criar_pedidos_de_pizza", methods = ["GET", "POST"])
+def criar_pedidos_de_pizza():
+    if request.method == "GET":
+        return render_template("criar_pedido.html")
+
+    
+
     
 
     
