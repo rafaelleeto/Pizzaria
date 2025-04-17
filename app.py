@@ -69,7 +69,9 @@ def excluir_tipo_de_pizza(nome):
 @app.route("/criar_pedidos_de_pizza", methods = ["GET", "POST"])
 def criar_pedidos_de_pizza():
     if request.method == "GET":
-        return render_template("criar_pedido.html")
+        pizzas = database.pegar_tipos_de_pizzas()
+        return render_template("criar_pedido.html", pizzas = pizzas)
+    
 
     
 

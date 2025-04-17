@@ -6,8 +6,44 @@
     <title>Document</title>
 </head>
 <body>
+    <form action="/criar_pedidos_de_pizza" method="post">
+        <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
+        <select name="pizza">
+            {% for pizza  in pizzas %}
+            <option value="nome">{{pizza[0], pizza[1]}}</option>
+            {% endfor %}
+        </select>
 
-    <select name="" id=""></select>
-    
+        <p></p>
+
+        <label for="tamanho">Escolha O Tamanho Da Pizza </label>
+        <select name="tamanho">
+            <option value="pequena">Pequena</option>
+            <option value="media">Media</option>
+            <option value="grande">Grande</option>
+            <option value="gigante">Gigante</option>
+        </select>
+
+        <p></p>
+
+        <label for="refri">Escolha uma bebida</label>
+        <select name="refri">
+            <option value="coca2l">Coca Cola 2L</option>
+            <option value="coca1l">Coca Cola 1L</option>
+            <option value="fantauva2l">Fanta UVA 2L</option>
+            <option value="fantauva1l">Fanta UVA 1L</option>
+            <option value="fantalaranja2l">Fanta Laranja 2L</option>
+            <option value="fantalaranja1l">Fanta Laranja 1L</option>
+            <option value="pepsi2l">Pepsi 2L</option>
+            <option value="pepsi1l">Pepsi 1L</option>
+            <option value="nada">Nenhuma</option>
+        </select>
+
+        <p></p>
+
+        <button type="submit">Clique para Confirmar o Pedido</button>
+    </form>
+
+
 </body>
 </html>
