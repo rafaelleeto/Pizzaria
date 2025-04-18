@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de pizza</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome Da Pizza</th>
+                <th>Tamanho Da Pizza</th>
+                <th>Preço Do Tamanho</th>
+                <th>Preço Da Bebida</th>
+                <th>Preço Da Entrega</th>
+                <th>Nome Do Cliente</th>
+                <th>Endereço Do Cliente</th>
+                <th>Telefone Do Cliente</th>
+                <th>Status Da Pizza</th>
+                <th>Preço Total Do Pedido</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+            <tr>
+                <td>{{pedido[1]}}</td> 
+                <td>{{pedido[2]}}</td>
+                <td>{{pedido[3]}}</td>
+                <td>{{pedido[4]}}</td>
+                <td>{{pedido[5]}}</td>
+                <td>{{pedido[6]}}</td>
+                <td>{{pedido[7]}}</td>
+                <td>{{pedido[8]}}</td>
+                <td>{{pedido[9]}}</td>
+                <td>{{pedido[10]}}</td>
+                <td><a href="/alterar_status/{{pedido[0]}}">Confirmar Entrega</a></td>
+                <td><a href="/deletar/{{pedido[0]}}">Deletar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

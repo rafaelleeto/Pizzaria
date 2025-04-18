@@ -88,12 +88,12 @@ def criar_pedido(pizza,tamanho,preco,refri,entrega,nome,endereco,telefone,status
     """, (pizza, tamanho, preco, refri, entrega, nome, endereco, telefone, status,preco_final))    
     conexao.commit()
     cursor.close()
-    
 
-
-
-
-
+def pegar_pedidos():
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("""SELECT * FROM pedidos """)
+    return cursor.fetchall()
 
     
 if __name__=="__main__":

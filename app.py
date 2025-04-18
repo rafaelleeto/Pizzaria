@@ -112,8 +112,13 @@ def criar_pedidos_de_pizza():
     print(preco_final)
 
 
-    database.criar_pedido(pizza,tamanho,preco_tamanho,refri,entrega,nome,endereco,telefone,"Não finalizado",preco_final)
+    database.criar_pedido(pizza,tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final)
     return redirect ("/criar_pedidos_de_pizza")
+
+@app.route("/ver_pedidos")
+def ver_pedidos():
+    pedidos = database.pegar_pedidos()
+    return render_template("ver_pedidos.html", pedidos= pedidos)
 
 if __name__ == "__main__":
     app.run(debug=True)
