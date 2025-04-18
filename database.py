@@ -19,11 +19,11 @@ def criar_tabelas():
                    preco_pizza REAL,
                    preco_refri REAL,
                    preco_entrega REAL,
-                   preco_borda REAL,
                    endereco TEXT,
                    telefone TEXT,
                    nome_cliente TEXT,
-                   status TEXT
+                   status TEXT,
+                   preco_final REAL
                    )   ''')
     
 
@@ -78,6 +78,17 @@ def deletar_pizza(nome):
     cursor.execute("""DELETE FROM tipos WHERE nome=? """,(nome,))
     conexao.commit()
     cursor.close()
+
+def criar_pedido(pizza,tamanho,preco,refri,entrega,nome,endereco,telefone,status,preco_final):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("""
+    INSERT INTO pedidos (nome_pizza, tamanho_pizza, preco_pizza, preco_refri, preco_entrega, nome_cliente, endereco, telefone, status, preco_final)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (pizza, tamanho, preco, refri, entrega, nome, endereco, telefone, status,preco_final))    
+    conexao.commit()
+    cursor.close()
+    
 
 
 

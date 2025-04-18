@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Criação de pedido</title>
 </head>
 <body>
     <form action="/criar_pedidos_de_pizza" method="post">
         <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
         <select name="pizza">
             {% for pizza  in pizzas %}
-            <option value="nome">{{pizza[0], pizza[1]}}</option>
+            <option value="{{pizza[0]}}">{{pizza[0], pizza[1]}}</option>
             {% endfor %}
         </select>
 
@@ -28,19 +28,32 @@
 
         <label for="refri">Escolha uma bebida</label>
         <select name="refri">
-            <option value="coca2l">Coca Cola 2L</option>
-            <option value="coca1l">Coca Cola 1L</option>
-            <option value="fantauva2l">Fanta UVA 2L</option>
-            <option value="fantauva1l">Fanta UVA 1L</option>
-            <option value="fantalaranja2l">Fanta Laranja 2L</option>
-            <option value="fantalaranja1l">Fanta Laranja 1L</option>
-            <option value="pepsi2l">Pepsi 2L</option>
-            <option value="pepsi1l">Pepsi 1L</option>
+            <option value="coca_2l">Coca Cola 2L</option>
+            <option value="coca_1l">Coca Cola 1L</option>
+            <option value="fantau_va_2l">Fanta UVA 2L</option>
+            <option value="fantau_va_1l">Fanta UVA 1L</option>
+            <option value="fanta_laranja_2l">Fanta Laranja 2L</option>
+            <option value="fanta_laranja_1l">Fanta Laranja 1L</option>
+            <option value="pepsi_2l">Pepsi 2L</option>
+            <option value="pepsi_1l">Pepsi 1L</option>
             <option value="nada">Nenhuma</option>
         </select>
-
         <p></p>
-
+        <label for="entrega">Encomenda</label>
+        <select name="entrega" id="entrega">
+            <option value="sem">Sem entrega</option>
+            <option value="com">Com entrega</option>
+        </select>
+        <p></p>
+        <label for="nome">Nome Do Cliente</label>
+        <input type="text" name="nome">
+        <p></p>
+        <label for="endereco">Endereço Do Cliente</label>
+        <input type="text" name="endereco">
+        <p></p>
+        <label for="telefone">Telefone Do Cliente</label>
+        <input type="text" name="telefone">
+        <p></p>
         <button type="submit">Clique para Confirmar o Pedido</button>
     </form>
 

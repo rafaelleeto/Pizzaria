@@ -59,12 +59,12 @@ def atualizar_nome_da_pizza(nome):
     nome_novo = request.form['nome']
     ingredientes = request.form['ingredientes']
     database.atualizar_pizza(nome_novo,ingredientes,nome)
-    return redirect("/menu")
+    return redirect("/editar_pizza")
 
 @app.route("/deletar/<nome>", methods = ["GET"])
 def excluir_tipo_de_pizza(nome):
     database.deletar_pizza(nome)
-    return redirect ("/menu")
+    return redirect ("/editar_pizza")
 
 @app.route("/criar_pedidos_de_pizza", methods = ["GET", "POST"])
 def criar_pedidos_de_pizza():
@@ -72,14 +72,48 @@ def criar_pedidos_de_pizza():
         pizzas = database.pegar_tipos_de_pizzas()
         return render_template("criar_pedido.html", pizzas = pizzas)
     
+    pizza = request.form['pizza']
+    tamanho = request.form['tamanho']
+    refri = request.form['refri']
+    entrega = request.form['entrega']
+    nome = request.form['nome']
+    endereco  = request.form['endereco']
+    telefone  = request.form['telefone']
 
-    
+    precos_tamanho = {
+        "pequena": 35,
+        "media": 50,
+        "grande": 65,
+        "gigante": 80
+    }
 
-    
+    refris = {
+        "coca_2l": 13,
+        "coca_1l": 8,
+        "fantau_va_2l": 11,
+        "fantau_va_1l": 5,
+        "fanta_laranja_2l": 11,
+        "fanta_laranja_1l": 5,
+        "pepsi_2l": 12,
+        "pepsi_1l": 7,
+        "nada": 0
+    }
 
-    
+    entregas = {
+        "com": 15,
+        "sem": 0,
+
+    }
+
+    refri_preco = refris.get(refri, 0)
+    preco_tamanho = precos_tamanho.get(tamanho, 0)
+    entrega_preco = entregas.get(entrega,0)
+    preco_final = refri_preco + preco_tamanho + entrega_preco
+    print(preco_final)
 
 
+    database.criar_pedido(pizza,tamanho,preco_tamanho,refri,entrega,nome,endereco,telefone,"Não finalizado",preco_final)
+    return redirect ("/criar_pedidos_de_pizza")
 
 if __name__ == "__main__":
     app.run(debug=True)
