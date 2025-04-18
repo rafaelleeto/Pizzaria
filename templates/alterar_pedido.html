@@ -6,11 +6,11 @@
     <title>Criação de pedido</title>
 </head>
 <body>
-    <form action="/criar_pedidos_de_pizza" method="post">
+    <form action="/alterar_pedido/{{tipo[0]}}" method="post">
         <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
         <select name="pizza">
             {% for pizza  in pizzas %}
-            <option >{{pizza[0]}}, Ingredientes: {{pizza[1]}}</option>
+            <option value="{{pizza[0]}}">{{pizza[0]}}, Ingredientes:{{pizza[1]}}</option>
             {% endfor %}
         </select>
 
@@ -27,7 +27,7 @@
         <p></p>
 
         <label for="refri">Escolha uma bebida</label>
-        <select name="refri">
+        <select name="refri" >
             <option value="coca_2l">Coca Cola 2L</option>
             <option value="coca_1l">Coca Cola 1L</option>
             <option value="fantau_va_2l">Fanta UVA 2L</option>
@@ -54,7 +54,7 @@
         <label for="telefone">Telefone Do Cliente</label>
         <input type="text" name="telefone">
         <p></p>
-        <button type="submit">Clique para Confirmar o Pedido</button>
+        <button type="submit">Clique Confirmar Edição Do Pedido</button>
     </form>
 
 

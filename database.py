@@ -106,7 +106,21 @@ def confirmar_entrega(id):
         cursor.execute("""UPDATE pedidos SET status=? WHERE id=?""",("Entregue",id))
     conexao.commit()
     cursor.close()
-    
+
+def pegar_um_tipo(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("""SELECT * FROM pedidos WHERE id=?""",(id,))
+    return cursor.fetchone()
+
+def atualizar_pedido(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final,id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("""UPDATE pedidos set nome_pizza=?, tamanho_pizza=?, preco_pizza=?, preco_refri=?, preco_entrega=?, nome_cliente=?, endereco=?,
+                    telefone=?, status=?, preco_final=? WHERE id=?""",(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final, id,))
+    conexao.commit()
+    cursor.close()
+        
 
 if __name__=="__main__":
     criar_tabelas()

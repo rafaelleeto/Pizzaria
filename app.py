@@ -125,6 +125,56 @@ def confirmar_pedido(id):
     database.confirmar_entrega(id)
     return redirect("/ver_pedidos")
 
+@app.route("/alterar_pedido/<id>", methods =["GET","POST"] )
+def alterar_pedido(id):
+    if request.method == "GET":
+        pizzas = database.pegar_tipos_de_pizzas()
+        tipo = database.pegar_um_tipo(id)
+        return render_template("alterar_pedido.html",pizzas=pizzas,tipo=tipo)
+    
+    pizza = request.form['pizza']
+    tamanho = request.form['tamanho']
+    refri = request.form['refri']
+    entrega = request.form['entrega']
+    nome = request.form['nome']
+    endereco  = request.form['endereco']
+    telefone  = request.form['telefone']
+
+    precos_tamanho = {
+        "pequena": 35,
+        "media": 50,
+        "grande": 65,
+        "gigante": 80
+    }
+
+    refris = {
+        "coca_2l": 13,
+        "coca_1l": 8,
+        "fantau_va_2l": 11,
+        "fantau_va_1l": 5,
+        "fanta_laranja_2l": 11,
+        "fanta_laranja_1l": 5,
+        "pepsi_2l": 12,
+        "pepsi_1l": 7,
+        "nada": 0
+    }
+
+    entregas = {
+        "com": 15,
+        "sem": 0,
+
+    }
+
+    refri_preco = refris.get(refri, 0)
+    preco_tamanho = precos_tamanho.get(tamanho, 0)
+    entrega_preco = entregas.get(entrega,0)
+    preco_final = refri_preco + preco_tamanho + entrega_preco
+    print(preco_final)
+
+
+    database.atualizar_pedido(pizza,tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id)
+    return redirect ("/ver_pedidos")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
