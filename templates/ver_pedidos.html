@@ -24,6 +24,7 @@
     <table>
         <thead>
             <tr>
+                <th>ID Da Pizza</th>
                 <th>Nome Da Pizza</th>
                 <th>Tamanho Da Pizza</th>
                 <th>Preço Do Tamanho</th>
@@ -41,6 +42,7 @@
         <tbody>
             {% for pedido in pedidos %}
             <tr>
+                <td>{{pedido[0]}}</td>
                 <td>{{pedido[1]}}</td> 
                 <td>{{pedido[2]}}</td>
                 <td>{{pedido[3]}}</td>
@@ -51,8 +53,8 @@
                 <td>{{pedido[8]}}</td>
                 <td>{{pedido[9]}}</td>
                 <td>{{pedido[10]}}</td>
-                <td><a href="/alterar_status/{{pedido[0]}}">Confirmar Entrega</a></td>
-                <td><a href="/deletar/{{pedido[0]}}">Deletar</a></td>
+                <td><a href="/confirmar/{{pedido[0]}}">Confirmar Entrega</a></td>
+                <td><a href="/alterar_pedido/{{pedido[0]}}">Alterar Pedido</a></td>
             </tr>
             {% endfor %}
         </tbody>

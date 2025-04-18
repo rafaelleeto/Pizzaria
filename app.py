@@ -120,5 +120,11 @@ def ver_pedidos():
     pedidos = database.pegar_pedidos()
     return render_template("ver_pedidos.html", pedidos= pedidos)
 
+@app.route("/confirmar/<id>")
+def confirmar_pedido(id):
+    database.confirmar_entrega(id)
+    return redirect("/ver_pedidos")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

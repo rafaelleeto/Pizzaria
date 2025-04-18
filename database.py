@@ -95,6 +95,18 @@ def pegar_pedidos():
     cursor.execute("""SELECT * FROM pedidos """)
     return cursor.fetchall()
 
+def confirmar_entrega(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("""SELECT status FROM pedidos WHERE id=?""",(id,))
+    variavel = cursor.fetchone()
+    if variavel[0] == "Entregue":
+        cursor.execute("""UPDATE pedidos SET status=? WHERE id=?""",("Não finalizado",id))
+    else:
+        cursor.execute("""UPDATE pedidos SET status=? WHERE id=?""",("Entregue",id))
+    conexao.commit()
+    cursor.close()
     
+
 if __name__=="__main__":
     criar_tabelas()
