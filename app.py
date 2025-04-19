@@ -35,7 +35,9 @@ def login():
 
 @app.route("/menu")
 def menu():
-    return render_template("menu.html")
+    lucros=database.lucro_total()
+    print(lucros)
+    return render_template("menu.html",lucros=lucros)
         
 @app.route("/criar_pizza", methods = ["GET", "POST"])
 def criar_pizza():
@@ -174,6 +176,8 @@ def alterar_pedido(id):
 
     database.atualizar_pedido(pizza,tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id)
     return redirect ("/ver_pedidos")
+
+
 
 
 if __name__ == "__main__":

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criação de pedido</title>
+    <title>Alteração De Pedido</title>
 </head>
 <body>
     <form action="/alterar_pedido/{{tipo[0]}}" method="post">
         <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
-        <select name="pizza">
+        <select name="pizza" value="">
             {% for pizza  in pizzas %}
             <option value="{{pizza[0]}}">{{pizza[0]}}, Ingredientes:{{pizza[1]}}</option>
             {% endfor %}
@@ -17,7 +17,7 @@
         <p></p>
 
         <label for="tamanho">Escolha O Tamanho Da Pizza </label>
-        <select name="tamanho">
+        <select name="tamanho" value="">
             <option value="pequena">Pequena</option>
             <option value="media">Media</option>
             <option value="grande">Grande</option>

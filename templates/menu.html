@@ -13,6 +13,17 @@
     <a href="/editar_pizza">Edição de De Pizzas </a>
     <p></p>
     <a href="/ver_pedidos">Lista de pedidos</a>
+    <p></p>
+    {% if lucros is not none and lucros > 0 %}
+
+    Dinheiro Recebido Das pizzas: R$ {{lucros}}
+
+
+    {% else %}
+    Dinheiro Recebido Das pizzas: R$ 0 
+    {% endif %}
+
+
 
 
     

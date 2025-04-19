@@ -120,6 +120,12 @@ def atualizar_pedido(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,e
                     telefone=?, status=?, preco_final=? WHERE id=?""",(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final, id,))
     conexao.commit()
     cursor.close()
+
+def lucro_total():
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    cursor.execute("SELECT SUM(preco_final) FROM pedidos WHERE status = ?", ("Entregue",))
+    return cursor.fetchone()[0]
         
 
 if __name__=="__main__":
