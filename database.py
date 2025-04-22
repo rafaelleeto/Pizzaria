@@ -23,7 +23,8 @@ def criar_tabelas():
                    telefone TEXT,
                    nome_cliente TEXT,
                    status TEXT,
-                   preco_final REAL
+                   preco_final REAL,
+                   refri TEXT
                    )   ''')
     
 
@@ -79,13 +80,13 @@ def deletar_pizza(nome):
     conexao.commit()
     cursor.close()
 
-def criar_pedido(pizza,tamanho,preco,refri,entrega,nome,endereco,telefone,status,preco_final):
+def criar_pedido(pizza,tamanho,preco,refri,entrega,nome,endereco,telefone,status,preco_final,refri_nome):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute("""
-    INSERT INTO pedidos (nome_pizza, tamanho_pizza, preco_pizza, preco_refri, preco_entrega, nome_cliente, endereco, telefone, status, preco_final)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (pizza, tamanho, preco, refri, entrega, nome, endereco, telefone, status,preco_final))    
+    INSERT INTO pedidos (nome_pizza, tamanho_pizza, preco_pizza, preco_refri, preco_entrega, nome_cliente, endereco, telefone, status, preco_final, refri)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (pizza, tamanho, preco, refri, entrega, nome, endereco, telefone, status, preco_final, refri_nome ))    
     conexao.commit()
     cursor.close()
 
@@ -113,11 +114,11 @@ def pegar_um_pedido(id):
     cursor.execute("""SELECT * FROM pedidos WHERE id=?""",(id,))
     return cursor.fetchone()
 
-def atualizar_pedido(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final,id):
+def atualizar_pedido(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final,id,refri_nome):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute("""UPDATE pedidos set nome_pizza=?, tamanho_pizza=?, preco_pizza=?, preco_refri=?, preco_entrega=?, nome_cliente=?, endereco=?,
-                    telefone=?, status=?, preco_final=? WHERE id=?""",(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final, id,))
+                    telefone=?, status=?, preco_final=? , refri=? WHERE id=?""",(nome,tamanho,preco,preco_refri,preco_entrega,nome_cliente,endereco,telefone,status,preco_final,refri_nome, id,))
     conexao.commit()
     cursor.close()
 

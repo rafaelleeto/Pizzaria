@@ -111,7 +111,7 @@ def criar_pedidos_de_pizza():
     preco_final = refri_preco + preco_tamanho + entrega_preco
     print(preco_final)
 
-    database.criar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final)
+    database.criar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final, refri)
     return redirect ("/criar_pedidos_de_pizza")
 
 @app.route("/ver_pedidos")
@@ -168,9 +168,10 @@ def alterar_pedido(id):
     entrega_preco = entregas.get(entrega,0)
     preco_final = refri_preco + preco_tamanho + entrega_preco
     print(preco_final)
+    
 
 
-    database.atualizar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id)
+    database.atualizar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id,refri)
     return redirect ("/ver_pedidos")
 
 

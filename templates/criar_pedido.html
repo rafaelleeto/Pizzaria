@@ -11,7 +11,7 @@
         <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
         <select name="pizza">
             {% for pizza  in pizzas %}
-            <option >{{pizza[0]}}, Ingredientes: {{pizza[1]}}</option>
+            <option value="{{pizza[0]}}">{{pizza[0]}}, Ingredientes: {{pizza[1]}}</option>
             {% endfor %}
         </select>
 

@@ -10,7 +10,7 @@
 <body>
     <form action="/alterar_pedido/{{tipo[0]}}" method="post">
         <label for="pizza">Escolha A Pizza Com Seus Respectivos Ingredientes</label>
-        <select name="pizza" value="">
+        <select name="pizza" >
             {% for pizza  in pizzas %}
             <option value="{{pizza[0]}}">{{pizza[0]}}, Ingredientes:{{pizza[1]}}</option>
             {% endfor %}
@@ -19,42 +19,42 @@
         <p></p>
 
         <label for="tamanho">Escolha O Tamanho Da Pizza </label>
-        <select name="tamanho" value="">
-            <option value="pequena">Pequena</option>
-            <option value="media">Media</option>
-            <option value="grande">Grande</option>
-            <option value="gigante">Gigante</option>
+        <select name="tamanho">
+            <option value="pequena" {{"selected" if tipo[3]==35 else ""  }} >Pequena</option>
+            <option value="media" {{"selected" if tipo[3]==50 else ""  }} >Media</option>
+            <option value="grande" {{"selected" if tipo[3]==65 else ""  }} >Grande</option>
+            <option value="gigante" {{"selected" if tipo[3]==80 else ""  }} >Gigante</option>
         </select>
 
         <p></p>
 
         <label for="refri">Escolha uma bebida</label>
         <select name="refri" >
-            <option value="coca_2l">Coca Cola 2L</option>
-            <option value="coca_1l">Coca Cola 1L</option>
-            <option value="fantau_va_2l">Fanta UVA 2L</option>
-            <option value="fantau_va_1l">Fanta UVA 1L</option>
-            <option value="fanta_laranja_2l">Fanta Laranja 2L</option>
-            <option value="fanta_laranja_1l">Fanta Laranja 1L</option>
-            <option value="pepsi_2l">Pepsi 2L</option>
-            <option value="pepsi_1l">Pepsi 1L</option>
-            <option value="nada">Nenhuma</option>
+            <option value="coca_2l" {{"selected" if tipo[11]=="coca_2l" else ""  }} >Coca Cola 2L</option>
+            <option value="coca_1l" {{"selected" if tipo[11]=="coca_1l" else ""  }} >Coca Cola 1L</option>
+            <option value="fantau_va_2l" {{"selected" if tipo[11]=="fantau_va_2l" else ""  }} >Fanta UVA 2L</option>
+            <option value="fantau_va_1l" {{"selected" if tipo[11]=="fantau_va_1l" else ""  }} >Fanta UVA 1L </option>
+            <option value="fanta_laranja_2l" {{"selected" if tipo[11]=="fanta_laranja_2l" else ""  }} >Fanta Laranja 2L</option>
+            <option value="fanta_laranja_1l" {{"selected" if tipo[11]=="fanta_laranja_1l" else ""  }} >Fanta Laranja 1L</option>
+            <option value="pepsi_2l" {{"selected" if tipo[11]=="pepsi_2l" else ""  }} >Pepsi 2L</option>
+            <option value="pepsi_1l" {{"selected" if tipo[11]=="pepsi_1l" else ""  }} >Pepsi 1L</option>
+            <option value="nada" {{"selected" if tipo[11]=="nada" else ""  }} >Nenhuma</option>
         </select>
         <p></p>
         <label for="entrega">Encomenda</label>
         <select name="entrega" id="entrega">
-            <option value="sem">Sem entrega</option>
-            <option value="com">Com entrega</option>
+            <option value="sem" {{"selected" if tipo[5]==0 else ""  }} >Sem entrega</option>
+            <option value="com" {{"selected" if tipo[5]==15 else ""  }} >Com entrega</option>
         </select>
         <p></p>
         <label for="nome">Nome Do Cliente</label>
-        <input type="text" name="nome">
+        <input type="text" name="nome" value="{{tipo[8]}}"> 
         <p></p>
         <label for="endereco">Endereço Do Cliente</label>
-        <input type="text" name="endereco">
+        <input type="text" name="endereco" value="{{tipo[6]}}">
         <p></p>
         <label for="telefone">Telefone Do Cliente</label>
-        <input type="text" name="telefone">
+        <input type="text" name="telefone" value="{{tipo[7]}}">
         <p></p>
         <button type="submit">Clique Confirmar Edição Do Pedido</button>
     </form>
