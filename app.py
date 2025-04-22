@@ -55,7 +55,7 @@ def editar_pizza():
 @app.route("/atualizar/<nome>", methods=["GET", "POST"])
 def atualizar_nome_da_pizza(nome):
     if request.method == "GET":
-        pizza = database.pegar_uma_pizza(nome)
+        pizza = database.pegar_um_tipo_pizza(nome)
         return render_template("atualizar_pizza.html", pizza=pizza)
     nome_novo = request.form["nome"]
     ingredientes = request.form["ingredientes"]
@@ -128,8 +128,8 @@ def confirmar_pedido(id):
 def alterar_pedido(id):
     if request.method == "GET":
         pizzas = database.pegar_tipos_de_pizzas()
-        tipo = database.pegar_um_tipo(id)
-        return render_template("alterar_pedido.html", pizzas=pizzas, tipo=tipo)
+        pedido = database.pegar_um_pedido(id)
+        return render_template("alterar_pedido.html", pizzas=pizzas, tipo=pedido)
     
     pizza = request.form["pizza"]
     tamanho = request.form["tamanho"]

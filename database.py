@@ -59,7 +59,7 @@ def pegar_tipos_de_pizzas():
     cursor.execute("""SELECT * FROM tipos""")
     return cursor.fetchall()
 
-def pegar_uma_pizza(nome):
+def pegar_um_tipo_pizza(nome):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute("""SELECT * FROM tipos where nome=?""",(nome,))
@@ -107,7 +107,7 @@ def confirmar_entrega(id):
     conexao.commit()
     cursor.close()
 
-def pegar_um_tipo(id):
+def pegar_um_pedido(id):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     cursor.execute("""SELECT * FROM pedidos WHERE id=?""",(id,))
