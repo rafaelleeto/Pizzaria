@@ -26,41 +26,40 @@ def login():
     senha = request.form["senha"]
     senha_banco = database.localizar_usuario(email)
 
-    if database.localizar_usuario(email):
-        senha_banco = database.localizar_usuario(email)
+    if senha_banco:
         if senha == senha_banco[0]:
-            session['email'] = email
+            session["email"] = email
             return redirect("/menu")
     return "Parece que algo deu errado, tente novamente!"
 
 @app.route("/menu")
 def menu():
-    lucros=database.lucro_total()
+    lucros = database.lucro_total()
     print(lucros)
-    return render_template("menu.html",lucros=lucros)
+    return render_template("menu.html", lucros=lucros)
         
-@app.route("/criar_pizza", methods = ["GET", "POST"])
+@app.route("/criar_pizza", methods=["GET", "POST"])
 def criar_pizza():
     if request.method == "GET":
         return render_template("criar_pizza.html")
-    nome = request.form['nome']
-    ingredientes = request.form['ingredientes']
-    database.criar_pizza(nome,ingredientes)
+    nome = request.form["nome"]
+    ingredientes = request.form["ingredientes"]
+    database.criar_pizza(nome, ingredientes)
     return redirect("/menu")
 
 @app.route ("/editar_pizza")
 def editar_pizza():
-    pizzas=database.pegar_tipos_de_pizzas()
-    return render_template("editar_pizza.html", pizzas = pizzas)
+    pizzas = database.pegar_tipos_de_pizzas()
+    return render_template("editar_pizza.html", pizzas=pizzas)
 
-@app.route("/atualizar/<nome>", methods = ["GET", "POST"])
+@app.route("/atualizar/<nome>", methods=["GET", "POST"])
 def atualizar_nome_da_pizza(nome):
     if request.method == "GET":
         pizza = database.pegar_uma_pizza(nome)
-        return render_template("atualizar_pizza.html", pizza = pizza)
-    nome_novo = request.form['nome']
-    ingredientes = request.form['ingredientes']
-    database.atualizar_pizza(nome_novo,ingredientes,nome)
+        return render_template("atualizar_pizza.html", pizza=pizza)
+    nome_novo = request.form["nome"]
+    ingredientes = request.form["ingredientes"]
+    database.atualizar_pizza(nome_novo, ingredientes, nome)
     return redirect("/editar_pizza")
 
 @app.route("/deletar/<nome>", methods = ["GET"])
@@ -68,19 +67,19 @@ def excluir_tipo_de_pizza(nome):
     database.deletar_pizza(nome)
     return redirect ("/editar_pizza")
 
-@app.route("/criar_pedidos_de_pizza", methods = ["GET", "POST"])
+@app.route("/criar_pedidos_de_pizza", methods=["GET", "POST"])
 def criar_pedidos_de_pizza():
     if request.method == "GET":
         pizzas = database.pegar_tipos_de_pizzas()
-        return render_template("criar_pedido.html", pizzas = pizzas)
+        return render_template("criar_pedido.html", pizzas=pizzas)
     
-    pizza = request.form['pizza']
-    tamanho = request.form['tamanho']
-    refri = request.form['refri']
-    entrega = request.form['entrega']
-    nome = request.form['nome']
-    endereco  = request.form['endereco']
-    telefone  = request.form['telefone']
+    pizza = request.form["pizza"]
+    tamanho = request.form["tamanho"]
+    refri = request.form["refri"]
+    entrega = request.form["entrega"]
+    nome = request.form["nome"]
+    endereco  = request.form["endereco"]
+    telefone  = request.form["telefone"]
 
     precos_tamanho = {
         "pequena": 35,
@@ -104,43 +103,41 @@ def criar_pedidos_de_pizza():
     entregas = {
         "com": 15,
         "sem": 0,
-
     }
 
     refri_preco = refris.get(refri, 0)
     preco_tamanho = precos_tamanho.get(tamanho, 0)
-    entrega_preco = entregas.get(entrega,0)
+    entrega_preco = entregas.get(entrega, 0)
     preco_final = refri_preco + preco_tamanho + entrega_preco
     print(preco_final)
 
-
-    database.criar_pedido(pizza,tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final)
+    database.criar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final)
     return redirect ("/criar_pedidos_de_pizza")
 
 @app.route("/ver_pedidos")
 def ver_pedidos():
     pedidos = database.pegar_pedidos()
-    return render_template("ver_pedidos.html", pedidos= pedidos)
+    return render_template("ver_pedidos.html", pedidos=pedidos)
 
 @app.route("/confirmar/<id>")
 def confirmar_pedido(id):
     database.confirmar_entrega(id)
     return redirect("/ver_pedidos")
 
-@app.route("/alterar_pedido/<id>", methods =["GET","POST"] )
+@app.route("/alterar_pedido/<id>", methods=["GET","POST"] )
 def alterar_pedido(id):
     if request.method == "GET":
         pizzas = database.pegar_tipos_de_pizzas()
         tipo = database.pegar_um_tipo(id)
-        return render_template("alterar_pedido.html",pizzas=pizzas,tipo=tipo)
+        return render_template("alterar_pedido.html", pizzas=pizzas, tipo=tipo)
     
-    pizza = request.form['pizza']
-    tamanho = request.form['tamanho']
-    refri = request.form['refri']
-    entrega = request.form['entrega']
-    nome = request.form['nome']
-    endereco  = request.form['endereco']
-    telefone  = request.form['telefone']
+    pizza = request.form["pizza"]
+    tamanho = request.form["tamanho"]
+    refri = request.form["refri"]
+    entrega = request.form["entrega"]
+    nome = request.form["nome"]
+    endereco  = request.form["endereco"]
+    telefone  = request.form["telefone"]
 
     precos_tamanho = {
         "pequena": 35,
@@ -164,7 +161,6 @@ def alterar_pedido(id):
     entregas = {
         "com": 15,
         "sem": 0,
-
     }
 
     refri_preco = refris.get(refri, 0)
@@ -174,7 +170,7 @@ def alterar_pedido(id):
     print(preco_final)
 
 
-    database.atualizar_pedido(pizza,tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id)
+    database.atualizar_pedido(pizza, tamanho, preco_tamanho, refri_preco, entrega_preco, nome, endereco, telefone, "Não finalizado", preco_final,id)
     return redirect ("/ver_pedidos")
 
 
