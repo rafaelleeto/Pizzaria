@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
+    <link rel="stylesheet" href="/static/estilos.css">
+
 </head>
 <body>
-    <a href="/criar_pedidos_de_pizza">Criar Pedido </a>
-    <p></p>
-    <a href="/criar_pizza">Criar Tipos De Pizza </a>
-    <p></p>
-    <a href="/editar_pizza">Edição de De Pizzas </a>
-    <p></p>
-    <a href="/ver_pedidos">Lista de pedidos</a>
-    <p></p>
+    <ul>
+        <li><a href="/criar_pedidos_de_pizza">Criar Pedido </a></li>
+        <li><a href="/criar_pizza">Criar Pizza </a></li>
+        <li><a href="/editar_pizza">Editar Pizzas </a></li>
+        <li><a href="/ver_pedidos">Ver pedidos </a></li>
+
+    </ul>
+    
+
     {% if lucros is not none and lucros > 0 %}
 
     Dinheiro Recebido Das pizzas: R$ {{lucros}}

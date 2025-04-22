@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo do formulário */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Título */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+/* Estilo dos selects e inputs */
+select, input {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;    
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+/* Efeito ao focar nos inputs e selects */
+select:focus, input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo do botão */
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+button:hover {
+    background-color: #218838;
+}
+
+/* Espaçamento entre os elementos */
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove o espaço entre as células */
+    margin: 20px 0;
+    font-family: Arial, sans-serif; /* Definindo a fonte */
+}
+
+/* Estilo para os cabeçalhos da tabela */
+th {
+    background-color: #007bff; /* Cor de fundo azul para os cabeçalhos */
+    color: white; /* Cor do texto branca */
+    text-align: left; /* Alinha o texto à esquerda */
+    padding: 12px 15px; /* Espaçamento interno nos cabeçalhos */
+    font-size: 16px;
+}
+
+/* Estilo para as células da tabela */
+td {
+    border: 1px solid #ddd; /* Borda fina cinza */
+    padding: 12px 15px; /* Espaçamento interno nas células */
+    text-align: left; /* Alinha o texto à esquerda */
+    font-size: 14px;
+}
+
+/* Efeito de hover nas linhas da tabela */
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo alternada para as linhas pares */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo quando o mouse passa por cima da linha */
+}
+
+/* Estilo para a borda da tabela */
+table, th, td {
+    border: 1px solid #ddd; /* Bordas suaves ao redor da tabela e células */
+}
+
+/* Estilo geral para a tabela */
+thead {
+    background-color: #333; /* Cor de fundo escura para o cabeçalho */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fff; /* Cor de fundo branca para as linhas ímpares */
+}
+
+/* Estilo para a lista de links */
+ul {
+    list-style-type: none; /* Remove os pontos da lista */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around; /* Distribui os links igualmente */
+    background-color: #333; /* Cor de fundo da barra de navegação */
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+/* Estilo dos itens da lista */
+ul li {
+    margin: 0 15px;
+}
+
+/* Estilo dos links */
+ul a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: #fff; /* Cor do texto */
+    font-size: 18px;
+    padding: 12px 20px; /* Espaçamento interno */
+    display: block;
+    border-radius: 5px; /* Bordas arredondadas nos links */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Efeito de transição */
+}
+
+/* Efeito de hover (passar o mouse) */
+ul a:hover {
+    background-color: #007bff; /* Cor de fundo ao passar o mouse */
+    color: #fff; /* Cor do texto ao passar o mouse */
+}
+
+/* Efeito de foco (quando o link está em foco) */
+ul a:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 5px #007bff; /* Adiciona um brilho ao redor do link */
+}
+
+/* Estilo para os links dentro da tabela (como botões) */
+table a {
+    display: inline-block; /* Para que o link tenha o comportamento de um botão */
+    padding: 10px 20px; /* Espaçamento interno */
+    margin: 5px 0; /* Margem para dar espaçamento entre os links */
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    text-align: center; /* Alinha o texto no centro */
+    text-decoration: none; /* Remove o sublinhado do link */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 14px; /* Tamanho da fonte */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Efeitos suaves */
+}
+
+/* Efeito de hover (passar o mouse) */
+table a:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escuro */
+    transform: translateY(-2px); /* Levanta o botão um pouco */
+}
+
+/* Efeito de focus (quando o link está em foco) */
+table a:focus {
+    outline: none; /* Remove o contorno padrão */
+    box-shadow: 0 0 5px #007bff; /* Brilho ao redor do link */
+}
+
+/* Efeito de clique */
+table a:active {
+    transform: translateY(1px); /* Quando clicar, o botão vai para baixo */
+}
